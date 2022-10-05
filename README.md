@@ -1,2 +1,0 @@
-# ShoppingCartApp
-Shopping Cart App
