@@ -9,7 +9,6 @@ const HomeScreen = () => {
 
     useEffect(() => {
         DataStore.query(Product).then(setProducts);
-        console.log('data', products)
     }, [])
     return (
         <View style={styles.page}>

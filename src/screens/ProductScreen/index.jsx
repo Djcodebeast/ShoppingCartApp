@@ -1,7 +1,6 @@
 import { View, Text, ScrollView, ActivityIndicator } from 'react-native'
 import { useState, useEffect } from 'react';
 import styles from './styles';
-// import product from '../../data/product';
 import { Picker } from '@react-native-picker/picker';
 import QuantitySelector from '../../components/QuantitySelector';
 import Button from '../../components/Button';
@@ -10,36 +9,17 @@ import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import { DataStore, Analytics } from 'aws-amplify';
 import { Product } from '../../models';
 import { CartProduct } from '../../models';
-import { NavigationStackProp } from 'react-navigation-stack'
-
-//@ts-ignore
-// import { Notifications } from 'aws-amplify'
 
 
 
 
 const ProductScreen = () => {
-
-
-
     const [product, setProduct] = useState(undefined)
-
-
-
-
     const [selectedOption, setSelectedOption] = useState(null);
     const [quantity, setQuantity] = useState(1);
 
     const navigation = useNavigation();
-
-
-
     const route = useRoute()
-
-    // const { InAppMessaging } = Notifications;
-    const myFirstEvent = { name: 'my_custom_event' };
-
-
     useEffect(() => {
         if (!route.params?.id) {
             return
@@ -52,7 +32,6 @@ const ProductScreen = () => {
             setSelectedOption(product.options[0])
         }
     }, [product])
-
 
     const onAddToCart = async () => {
 
@@ -67,11 +46,11 @@ const ProductScreen = () => {
         });
 
         DataStore.save(newCartProduct);
-        // InAppMessaging.syncMessages();
         navigation.navigate('ShoppingCart')
+
+        const event = { name: 'my_cart_event', attributes: { title: product.title } };
+        Analytics.record(event);
     }
-
-
 
     if (!product) {
         return <ActivityIndicator />
@@ -109,7 +88,6 @@ const ProductScreen = () => {
 
             {/* Buttons */}
             <Button text={'Add to Cart'} onPress={onAddToCart} />
-            <Button text={'Buy Now'} onPress={() => { console.warn('Buy Now') }}></Button>
         </ScrollView>
     )
 }

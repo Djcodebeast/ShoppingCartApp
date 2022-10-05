@@ -10,6 +10,11 @@
       "StackName": "amplify-shoppingcartapp-dev-182548",
       "StackId": "arn:aws:cloudformation:us-east-1:221262183359:stack/amplify-shoppingcartapp-dev-182548/9b7194e0-4409-11ed-8478-0a0fcaf8c6b3",
       "AmplifyAppId": "d3kut8s0qn2toz"
+    },
+    "categories": {
+      "auth": {
+        "undefined": {}
+      }
     }
   }
 }

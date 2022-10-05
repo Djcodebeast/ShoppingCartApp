@@ -1,0 +1,21 @@
+{
+    "appName": "shoppingcartapp",
+    "roleName": "pinpointLambdaRole37729f2a",
+    "cloudformationPolicyName": "cloudformationPolicy37729f2a",
+    "cloudWatchPolicyName": "cloudWatchPolicy37729f2a",
+    "pinpointPolicyName": "pinpointPolicy37729f2a",
+    "authPolicyName": "pinpoint_amplify_37729f2a",
+    "unauthPolicyName": "pinpoint_amplify_37729f2a",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

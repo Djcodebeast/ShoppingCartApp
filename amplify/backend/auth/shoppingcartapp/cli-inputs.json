@@ -1,0 +1,12 @@
+{
+  "version": "1",
+  "cognitoConfig": {
+    "identityPoolName": "shoppingcartapp_identitypool_0111b8aa",
+    "allowUnauthenticatedIdentities": true,
+    "authSelections": "identityPoolOnly",
+    "resourceName": "shoppingcartapp",
+    "sharedId": "0111b8aa",
+    "serviceName": "Cognito",
+    "useDefault": "manual"
+  }
+}

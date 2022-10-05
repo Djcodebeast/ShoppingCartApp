@@ -9,7 +9,7 @@
  */
 
 import 'react-native-gesture-handler'
-import React from 'react';
+import React, { useEffect } from 'react';
 
 
 import {
@@ -24,25 +24,39 @@ import {
 import Router from './src/components/router';
 import { Amplify } from 'aws-amplify'
 import awsconfig from './src/aws-exports';
+import { Notifications } from 'aws-amplify'
+import {
+  InAppMessagingProvider,
+  InAppMessageDisplay
+} from 'aws-amplify-react-native';
 
 
 Amplify.configure(awsconfig)
 
+const { InAppMessaging } = Notifications;
+
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
+
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     flex: 1,
   };
 
+  useEffect(() => {
+    InAppMessaging.syncMessages();
+  }, []);
   return (
     <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <Router />
+      <InAppMessagingProvider>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+        />
+        <Router />
+        <InAppMessageDisplay />
+      </InAppMessagingProvider>
     </SafeAreaView>
   );
 };
